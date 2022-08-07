@@ -6,7 +6,7 @@ import axios from 'axios'
 function App() {
 
 
-  const [activities, setActivities] = useState<Node[]>([]);
+  const [activities, setActivities ] = useState<Node[]>([]);
 
 
   const clientID = '91367';
@@ -24,15 +24,15 @@ function App() {
         axios.post(`${auth_link}?client_id=${clientID}&client_secret=${clientSecret}&refresh_token=${refreshToken}&grant_type=refresh_token`)
       ]);
       const stravaActivityResponse = await axios.get(`${activities_link}?access_token=${stravaAuthResponse[0].data.access_token}`);
-      console.log(stravaActivityResponse.data[0].name);
+      console.log(stravaActivityResponse.data[0]);
       setActivities(stravaActivityResponse.data[0].name)
     }
 
     fetchData();
   }, []);
   return (
-    <h2>test</h2>
-    <h1></h1>
+    
+    <h1>{activities}</h1>
 /* <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
   <TileLayer
     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -43,7 +43,7 @@ function App() {
         A pretty CSS3 popup. <br /> Easily customizable.
     </Popup>
   </Marker>
-</MapContainer> */
+</MapContainer>  */
   );
 }
 
