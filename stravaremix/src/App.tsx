@@ -24,7 +24,7 @@ function App() {
         axios.post(`${auth_link}?client_id=${clientID}&client_secret=${clientSecret}&refresh_token=${refreshToken}&grant_type=refresh_token`)
       ]);
       const stravaActivityResponse = await axios.get(`${activities_link}?access_token=${stravaAuthResponse[0].data.access_token}`);
-      console.log(stravaActivityResponse.data[0]);
+      console.log(stravaActivityResponse.data[1]);
       setActivities(stravaActivityResponse.data[0].name)
     }
 
